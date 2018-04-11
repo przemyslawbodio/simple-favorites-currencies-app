@@ -20,6 +20,7 @@ export default function favorites(state = initialState, action) {
             return {
                 ...state,
                 codes: [
+                    ...state.codes,
                     ...action.ids
                 ]
             }

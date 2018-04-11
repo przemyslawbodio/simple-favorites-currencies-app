@@ -8,10 +8,14 @@ import {
     REMOVE_ALL_FROM_REMOVE_FAVORITES_LIST
 } from './constants'
 
-export const confirmToAddToFavorites = ids => ({
-    type: CONFIRM_TO_ADD_TO_FAVORITE_LIST,
-    ids
-})
+export const confirmToAddToFavorites = ids => (dispatch, getState) => {
+    const uniqueIds = ids.filter(id => getState().favorites.codes.indexOf(id) === -1)
+
+    dispatch({
+        type: CONFIRM_TO_ADD_TO_FAVORITE_LIST,
+        ids: uniqueIds
+    })
+}
 
 const getFavorites = (favoritesCodes, favoritesList) => ({
     type: SHOW_FAVORITES,
@@ -20,8 +24,6 @@ const getFavorites = (favoritesCodes, favoritesList) => ({
 })
 
 export const showFavorites = codes => (dispatch, getState) => {
-    if (!codes) return
-
     const favoritesList = codes.map(code => getState().currencies.byCode[ code ])
 
     return dispatch(
