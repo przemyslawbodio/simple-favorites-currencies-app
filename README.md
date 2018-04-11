@@ -6,7 +6,7 @@ This project based on [Redux Examples - async](https://github.com/reactjs/redux/
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm install`
 Installs all dependencies.
 
 ### `npm start`
